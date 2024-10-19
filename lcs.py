@@ -1,33 +1,20 @@
-def lcs(X, Y):
-    m = len(X)
-    n = len(Y)
+def lcs(text1, text2):
+    m, n = len(text1), len(text2)
+    longest = 0
+    end_indices = []
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
 
-    L = [[0] * (n + 1) for i in range(m + 1)]
-
-    for i in range(m + 1):
-        for j in range(n + 1):
-            if i == 0 or j == 0:
-                L[i][j] = 0
-            elif X[i - 1] == Y[j - 1]:
-                L[i][j] = L[i - 1][j - 1] + 1
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if text1[i - 1] == text2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+                if dp[i][j] > longest:
+                    longest = dp[i][j]
+                    end_indices = [i]
+                elif dp[i][j] == longest:
+                    end_indices.append(i)
             else:
-                L[i][j] = max(L[i - 1][j], L[i][j - 1])
+                dp[i][j] = 0
 
-    index = L[m][n]
-    lcs_str = [""] * (index + 1)
-    lcs_str[index] = ""
-
-    i = m
-    j = n
-    while i > 0 and j > 0:
-        if X[i - 1] == Y[j - 1]:
-            lcs_str[index - 1] = X[i - 1]
-            i -= 1
-            j -= 1
-            index -= 1
-        elif L[i - 1][j] > L[i][j - 1]:
-            i -= 1
-        else:
-            j -= 1
-
-    return ''.join(lcs_str)
+    substrings = [text1[end - longest:end] for end in end_indices]
+    return substrings

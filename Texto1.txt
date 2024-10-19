@@ -1,6 +1,1 @@
-Este es un archivo de prueba para la aplicación de procesamiento de texto. 
-El propósito es verificar que los algoritmos funcionen correctamente.
-Un algoritmo que será probado es KMP para la búsqueda de patrones.
-También se probará el algoritmo de Manacher para detectar palíndromos.
-Por ejemplo, "anilina" es un palíndromo porque se lee igual de izquierda a derecha que de derecha a izquierda.
-Finalmente, también podemos probar el autocompletado utilizando Tries con el contenido de este texto.
+La programación en Python es muy versátil y útil. La palabra Python se usa para todo tipo de aplicaciones.
